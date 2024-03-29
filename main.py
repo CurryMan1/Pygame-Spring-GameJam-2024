@@ -7,7 +7,7 @@ from src.scenes.game import Game
 
 
 class App:
-    FONT = 'assets/fonts/mouldy_cheese.ttf'
+    FONT = 'assets/fonts/pixel_font.ttf'
 
     def __init__(self):
         pygame.init()
@@ -21,8 +21,8 @@ class App:
         self.clock = pygame.time.Clock()
 
         #font
-        self.title_font = pygame.font.Font(self.FONT, 150)
-        self.normal_font = pygame.font.Font(self.FONT, 70)
+        self.title_font = pygame.font.Font(self.FONT, 170)
+        self.normal_font = pygame.font.Font(self.FONT, 90)
 
         #states
         self.scenes = {
@@ -36,26 +36,28 @@ class App:
         self.running = True
         self.restart = False
         self.delta = 0
-        self.mouse_pos = ()
+        self.mouse_pos = pygame.Vector2(0, 0)
         self.mouse_input = ()
+        self.keys = ()
 
-        self.clicked = [False]*3
+        self.mouse_clicked = [False] * 3
 
     def run(self):
         while self.running:
             self.delta = min(self.clock.tick()/1000, 0.1)
 
-            self.mouse_pos = pygame.mouse.get_pos()
+            self.mouse_pos = pygame.Vector2(pygame.mouse.get_pos())
             self.mouse_input = pygame.mouse.get_pressed()
+            self.keys = pygame.key.get_pressed()
 
             #update and draw state
             self.current_scene.update(self.delta)
             self.current_scene.draw()
 
             if self.mouse_input[0]:
-                self.clicked[0] = True
+                self.mouse_clicked[0] = True
             else:
-                self.clicked[0] = False
+                self.mouse_clicked[0] = False
 
             #handle events
             for event in pygame.event.get():
@@ -66,7 +68,7 @@ class App:
             pygame.display.flip()
 
     def change_scene(self, scene):
-        self.clicked[0] = True
+        self.mouse_clicked[0] = True
         self.current_scene = self.scenes[scene]
 
     def stop(self):

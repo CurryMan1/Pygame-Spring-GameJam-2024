@@ -1,4 +1,5 @@
 import pygame
+from os import listdir
 
 
 def load_img(path, transparent=False, scale=None, rotate=None):
@@ -16,4 +17,14 @@ def load_img(path, transparent=False, scale=None, rotate=None):
         img = img.convert()
 
     return img
+
+
+def load_imgs(path, transparent=False, scale=None, rotate=None):
+    images = []
+
+    for file in listdir(f'assets/img/{path}'):
+        img = load_img(f'{path}/{file}', transparent, scale, rotate)
+        images.append(img)
+
+    return images
 

@@ -2,7 +2,7 @@ import pygame
 from src.scene_enum import Scenes
 from src.scenes.base import BaseScene
 from src.buttons.text_button import TextButton
-from src.constants import WIDTH, HEIGHT, BLACK
+from src.constants import WIDTH, HEIGHT, DARK_GREY
 
 
 class Start(BaseScene):
@@ -43,7 +43,7 @@ class Start(BaseScene):
                 self.app.stop()
 
     def update(self, delta):
-        if not self.app.clicked[0]:
+        if not self.app.mouse_clicked[0]:
             if self.start_btn.is_clicked():
                 self.app.change_scene(Scenes.GAME)
 
@@ -54,7 +54,7 @@ class Start(BaseScene):
                 self.app.stop()
 
     def draw(self):
-        self.app.screen.fill(BLACK)
+        self.app.screen.fill(DARK_GREY)
 
         self.title.draw()
 
