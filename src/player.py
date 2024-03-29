@@ -1,10 +1,10 @@
 import pygame
+from src.feet import Feet
 from src.constants import WIDTH, HEIGHT, BLUE, GRAVITY
 
 
 class Player:
     JUMP_POWER = 100
-
     def __init__(self, app):
         self.app = app
 
@@ -14,11 +14,15 @@ class Player:
 
         self.vel = pygame.Vector2(0, 0)
         self.x_direction = 0
+        self.feet = Feet(self,self.app,-10)
+        self.feet1 = Feet(self, self.app,90)
 
         self.standing_block = None
 
     def draw(self):
         self.app.screen.blit(self.image, self.rect)
+        self.feet.draw()
+        self.feet1.draw()
 
     def update(self, delta):
         #temp
@@ -48,3 +52,5 @@ class Player:
             )
 
         self.rect.center += self.vel*0.5
+        self.feet.update(delta)
+        self.feet1.update(delta)
