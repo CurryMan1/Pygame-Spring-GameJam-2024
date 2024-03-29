@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <tileset version="1.10" tiledversion="1.10.2" name="tempreturegame" tilewidth="16" tileheight="16" tilecount="128" columns="8">
- <image source="TILEMAP.png" trans="ffffff" width="128" height="256"/>
+ <image source="tile_map.png" trans="ffffff" width="128" height="256"/>
  <tile id="0">
   <properties>
    <property name="tag" value="stone"/>

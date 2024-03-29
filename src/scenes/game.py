@@ -1,5 +1,7 @@
 import pygame
 import random
+from pytmx.util_pygame import load_pygame
+from src.utils import load_tmx_objects
 from src.player import Player
 from src.buttons.text_button import TextButton
 from src.constants import DARK_GREY, WIDTH
@@ -18,6 +20,11 @@ class Game(BaseScene):
             center=(WIDTH/2, 150)
         )
 
+        loaded_tmx_data = load_pygame("assets/maps/temperaturegame_map_test.tmx")
+        self.liquid_blocks = load_tmx_objects(loaded_tmx_data, ['water', 'lava'])
+        self.normal_blocks = load_tmx_objects(loaded_tmx_data, ['stone', 'wood'])
+        self.ice_blocks = load_tmx_objects(loaded_tmx_data, ['ice'])
+
         self.player = Player(app)
 
     def handle_event(self, event):
@@ -32,3 +39,5 @@ class Game(BaseScene):
     def update(self, delta):
         self.player.update(delta)
 
+    def update_lvl_info(self, level: int):
+        ...

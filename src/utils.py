@@ -1,5 +1,6 @@
 import pygame
 from os import listdir
+from src.tile import Tile
 
 
 def load_img(path, transparent=False, scale=None, rotate=None):
@@ -28,3 +29,12 @@ def load_imgs(path, transparent=False, scale=None, rotate=None):
 
     return images
 
+
+def load_tmx_objects(data, tags: list) -> list[Tile, ...]:
+    tiles = []
+    for obj in data.objects:
+        if obj.tag in tags:
+            for x, y, surface in obj.tiles():
+                pos = (obj.x, obj.y)
+                tiles.append(Tile(pos, surface, obj.tag))
+    return tiles

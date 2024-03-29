@@ -15,5 +15,5 @@ BLOCK_PROPERTIES = {
     'wood': (10.0, 7.5, 2.0),
     'ice': (5.0, 1.0, 3.5),
     'water': (0, 0, 0), #TODO
-
+    'lava': (0, 0, 0) #TODO
 }

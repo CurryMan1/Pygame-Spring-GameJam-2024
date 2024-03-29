@@ -42,7 +42,7 @@ class Player:
                 self.vel.x = 0
         else:
             self.vel.x = min(
-                self.vel.x + (self.x_direction * accel * delta),
+                self.vel.x + (self.x_direction*accel*delta),
                 self.x_direction*max_speed,
                 key=abs
             )
