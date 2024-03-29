@@ -3,8 +3,6 @@ from src.constants import WIDTH, HEIGHT, BLUE, GRAVITY
 
 
 class Player:
-    max_speed = 2
-    accel = 10
     JUMP_POWER = 100
 
     def __init__(self, app):
@@ -23,6 +21,11 @@ class Player:
         self.app.screen.blit(self.image, self.rect)
 
     def update(self, delta):
+        #temp
+        max_speed = 2
+        accel = 10
+        friction = 7.5
+
         self.x_direction = 0
         if self.app.keys[pygame.K_a]:
             self.x_direction -= 1
@@ -32,8 +35,6 @@ class Player:
         self.rect.center += self.vel * 0.5
 
         if self.x_direction == 0:
-            #TEMPORARY
-            friction = 7.5
             fd = friction*delta #use the friction of STANDING BLCOK
             if abs(self.vel.x) > fd:
                 self.vel.x -= self.vel.x * fd
@@ -41,8 +42,8 @@ class Player:
                 self.vel.x = 0
         else:
             self.vel.x = min(
-                self.vel.x + (self.x_direction * self.accel * delta),
-                self.x_direction*self.max_speed,
+                self.vel.x + (self.x_direction * accel * delta),
+                self.x_direction*max_speed,
                 key=abs
             )
 
